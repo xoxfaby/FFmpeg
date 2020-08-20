@@ -706,9 +706,13 @@ static int ffmmal_read_frame(AVCodecContext *avctx, AVFrame *frame, int *got_fra
                 goto done;
         }
 
-        ctx->eos_received |= !!(buffer->flags & MMAL_BUFFER_HEADER_FLAG_EOS);
-        if (ctx->eos_received)
+        int eos = !!(buffer->flags & MMAL_BUFFER_HEADER_FLAG_EOS);
+        if (eos) {
+            if (ctx->eos_sent) {
+              ctx->eos_received = 1;
+            }
             goto done;
+        }
 
         if (buffer->cmd == MMAL_EVENT_FORMAT_CHANGED) {
             MMAL_COMPONENT_T *decoder = ctx->decoder;
