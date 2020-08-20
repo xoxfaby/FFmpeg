@@ -191,6 +191,7 @@ extern const AVCodec ff_mdec_decoder;
 extern const AVCodec ff_mimic_decoder;
 extern const AVCodec ff_mjpeg_encoder;
 extern const AVCodec ff_mjpeg_decoder;
+extern const AVCodec ff_mjpeg_mmal_decoder;
 extern const AVCodec ff_mjpegb_decoder;
 extern const AVCodec ff_mmvideo_decoder;
 extern const AVCodec ff_mobiclip_decoder;

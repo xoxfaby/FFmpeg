@@ -375,6 +375,9 @@ static av_cold int ffmmal_init_decoder(AVCodecContext *avctx)
     format_in = decoder->input[0]->format;
     format_in->type = MMAL_ES_TYPE_VIDEO;
     switch (avctx->codec_id) {
+    case AV_CODEC_ID_MJPEG:
+        format_in->encoding = MMAL_ENCODING_MJPEG;
+        break;
     case AV_CODEC_ID_MPEG2VIDEO:
         format_in->encoding = MMAL_ENCODING_MP2V;
         break;
@@ -846,6 +849,7 @@ static const AVOption options[]={
     };
 
 FFMMAL_DEC(h264, AV_CODEC_ID_H264)
+FFMMAL_DEC(mjpeg, AV_CODEC_ID_MJPEG)
 FFMMAL_DEC(mpeg2, AV_CODEC_ID_MPEG2VIDEO)
 FFMMAL_DEC(mpeg4, AV_CODEC_ID_MPEG4)
 FFMMAL_DEC(vc1, AV_CODEC_ID_VC1)
